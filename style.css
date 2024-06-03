@@ -39,21 +39,19 @@ p{
 .buttons{
     display: flex;
     justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    
 }
 
 #button1{
-    width: 150px;
-    margin-bottom: 10px;
+    width: 125px;
     padding: 7px;
     background-color: white;
+    border-radius: 8px;
+    margin-right: 20px;
 }
 
 #button2{
-    width: 150px;
-    margin-bottom: 10px;
+    width: 125px;
     padding: 7px;
     background-color: goldenrod;
+    border-radius: 8px;
 }
