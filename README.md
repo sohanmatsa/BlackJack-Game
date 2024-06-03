@@ -1,2 +1,2 @@
 # BlackJack-Game
-Built BlackJack game using HTML, CSS &amp; JavaScript !
+BlackJack game built using HTML, CSS &amp; JavaScript !
