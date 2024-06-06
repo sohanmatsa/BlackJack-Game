@@ -49,6 +49,7 @@ p{
 #start-btn{
     width: 125px;
     padding: 7px;
+    color: black;
     background-color: white;
     border-radius: 8px;
     margin-right: 20px;
@@ -57,6 +58,7 @@ p{
 #new-btn{
     width: 125px;
     padding: 7px;
+    color: black;
     background-color: goldenrod;
     border-radius: 8px;
 }
