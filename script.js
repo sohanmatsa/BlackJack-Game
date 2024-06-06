@@ -1,11 +1,16 @@
+let points = 200
 let cards = []
 let sum = 0
-let isAlive = false
-let hasBlackJack = false
+let playing = false
 let message = ""
 let titleEl = document.getElementById("title")
 let cardsEl = document.getElementById("cards")
 let sumEl = document.getElementById("sum")
+let pointEl = document.getElementById("point")
+let startbutton = document.getElementById("start-btn")
+let newbutton = document.getElementById("new-btn")
+let gameMenu = document.getElementById("menu")
+let endMessage = document.getElementById("end-msg")
 
 function getRandomCard(){
     let randomNum = Math.floor( Math.random()*13 ) + 1
@@ -18,14 +23,29 @@ function getRandomCard(){
     }
 }
 
+function gameEnd(){
+    newbutton.hidden = true
+    startbutton.hidden = false
+    playing = false
+    if (points === 0){
+        endMessage.hidden = false
+        gameMenu.hidden = true
+
+    }
+}
+
 function startGame(){
-    isAlive = true
+    playing = true
     let firstCard = getRandomCard()
     let secondCard = getRandomCard()
     cards = [firstCard , secondCard]
     sum = firstCard + secondCard
+    newbutton.hidden = false
+    startbutton.hidden = true
     renderGame()
+
 }
+
 
 function renderGame(){
     cardsEl.textContent = "Cards : "
@@ -35,19 +55,27 @@ function renderGame(){
     sumEl.textContent = "Sum : " + sum
     if ( sum <= 20){
         message = "Do you want another card ? "
+
     } else if ( sum === 21) {
-        hasBlackJack = true
-        message = " You got BlackJack !! "
+        
+        message = " You got BlackJack !! 🥳 "
+        points += 20
+        gameEnd() 
+        
     } else {
-        isAlive = false
-        message = " You are out of the Game "
+        
+        message = " You are out of the Game 😞 "
+        points -= 20
+        gameEnd()
+        
     }
 
     titleEl.textContent = message
+    pointEl.textContent = "Points : " + points
 }
 
 function newCard() {
-    if (isAlive === true && hasBlackJack === false) {
+    if (playing == true) {
         let card = getRandomCard()
         cards.push(card)
         sum += card

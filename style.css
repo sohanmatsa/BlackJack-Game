@@ -13,7 +13,7 @@ body{
     border-style:double;
     border-width: 5px;
     border-color: black;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     min-width: 380px;
     max-width: 800px;
     margin: 0 auto;
@@ -24,6 +24,11 @@ body{
 h1{
     font-size: 50px;
     color:goldenrod;
+}
+
+h2{
+    font-size: 30px;
+    color:white;
 }
 
 p{
@@ -41,7 +46,7 @@ p{
     justify-content: center;
 }
 
-#button1{
+#start-btn{
     width: 125px;
     padding: 7px;
     background-color: white;
@@ -49,7 +54,7 @@ p{
     margin-right: 20px;
 }
 
-#button2{
+#new-btn{
     width: 125px;
     padding: 7px;
     background-color: goldenrod;

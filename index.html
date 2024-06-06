@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlackJack Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
-        <h1>BLACKJACK</h1>
-        <p id="title"> Want to play a Game ? </p>
-        <p id="cards"> Cards : </p>
-        <p id="sum"> Sum : </p>
-        <div class="buttons">
-            <button id="button1" onclick="startGame()"> START GAME </button>
-            <button id="button2" onclick="newCard()"> NEW CARD </button>
+        <h1> BLACKJACK </h1>
+        <h2 id="end-msg" hidden> Thanks for playing , See you next time ! 😀 </h2>
+        <div id="menu">
+            <p id="title"> Want to play a Game ? </p>
+            <p id="cards"> Cards : </p>
+            <p id="sum"> Sum : </p>
+            <div class="buttons">
+                <button id="start-btn" onclick="startGame()"> START GAME </button>
+                <button id="new-btn" onclick="newCard()"> NEW CARD </button>
+            </div>
+            <p id="point">Points : 200 </p>
         </div>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
