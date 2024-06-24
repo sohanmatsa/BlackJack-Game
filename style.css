@@ -1,8 +1,8 @@
 body{
-    background-image: url(table.png);
+    background-image: url(images/background.jpg);
     background-size: cover;
     margin: 10px;
-    margin-top: 150px;
+    margin-top: 90px;
     max-width: 100%;
     overflow-x: hidden;
 
@@ -10,35 +10,75 @@ body{
 
 .container{
     border-radius: 15px;
-    border-style:double;
-    border-width: 5px;
-    border-color: black;
-    padding-bottom: 20px;
+    box-shadow: 1px 1px 10px;
+    padding-top: 20px;
+    padding-bottom: 30px;
     min-width: 380px;
-    max-width: 800px;
+    max-width: 80%;
     margin: 0 auto;
     text-align: center;
     
 }
 
-h1{
-    font-size: 50px;
-    color:goldenrod;
+
+#titles{
+    display: flex;
+    justify-content:space-evenly}
+
+#side-1{
+    width: 15%;
 }
+
+#titleImg{
+    width: 50%;
+}
+
+#side-2{
+    width: 15%;
+}
+
 
 h2{
     font-size: 30px;
     color:white;
 }
 
-p{
-    font-size: 25px;
-    color: white;
+.rules{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(images/table.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin:8%;
+    border-radius: 10px;
+
 }
 
-#coins{
-    display: flex;
-    justify-content: flex-end;
+h3{
+    font-family: Inter,Verdana,sans-serif;
+    font-size: 20px;
+}
+
+ul{
+    margin-top: -5px;
+    text-align: center;
+    width: 70%;
+    text-align: left;
+    font-family: Inter,Verdana,sans-serif;
+    font-weight: 500;
+    color: #D5D4D8;
+}
+
+li{
+    margin-bottom: 10px;
+}
+
+#start-btn{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
 }
 
 .buttons{
@@ -46,8 +86,9 @@ p{
     justify-content: center;
 }
 
-#start-btn{
-    width: 125px;
+#hit-btn{
+    width: 75px;
+    height: 45px;
     padding: 7px;
     color: black;
     background-color: white;
@@ -55,10 +96,23 @@ p{
     margin-right: 20px;
 }
 
-#new-btn{
-    width: 125px;
+#stay-btn{
+    width: 75px;
+    height: 45px;
     padding: 7px;
     color: black;
-    background-color: goldenrod;
+    background-color: white;
     border-radius: 8px;
+}
+
+#menu {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.game-image {
+    width: 90px; 
+    height: auto; 
+    display: inline-block;
+    margin-right: 10px;
 }
