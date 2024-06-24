@@ -6,24 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlackJack Game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
-        <h1> BLACKJACK </h1>
+        <div id="titles">
+            <img id="side-1" src="images/side-titles.png" alt="side-titles">
+            <img id="titleImg" src="images/title2.png" alt="title">
+            <img id="side-2" src="images/side-titles.png" alt="side-titles">
+        </div>
         <h2 id="end-msg" hidden> Thanks for playing , See you next time ! 😀 </h2>
+        <div class="rules">
+            <h3> How to play </h3>
+            <ul>
+                <li> Player will have to Hit or Stay depending on the sum of cards.</li>
+                <li> By clicking Hit you can add more cards one by one . You should not exceed the sum 21.</li>
+                <li> By clicking Stay you will stop adding cards and the Dealer will start their game .If the sum of cards of Player or Dealer is greater than 21, they lose automatically. </li>
+                <li> To win, you need to ensure the combined value of your cards is greater than that of the dealer. </li>
+            </ul>
+        </div>
+        <button id="start-btn"> Let's Play! </button>
         <div id="menu">
-            <p id="title"> Want to play a Game ? </p>
-            <p id="cards"> Cards : </p>
-            <p id="sum"> Sum : </p>
+
             <div class="buttons">
-                <button id="start-btn" onclick="startGame()"> START GAME </button>
-                <button id="new-btn" onclick="newCard()"> NEW CARD </button>
+                <button id="hit-btn" hidden> HIT 🃁 </button>
+                <button id="stay-btn" hidden> STAY✋ </button>
             </div>
-            <p id="point">Points : 200 </p>
+            <!-- <p id="points"> Coins : 200 </p> -->
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src=".js"></script>
 </body>
 
 </html>
