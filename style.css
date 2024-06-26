@@ -1,118 +1,204 @@
-body{
+body {
     background-image: url(images/background.jpg);
     background-size: cover;
     margin: 10px;
-    margin-top: 90px;
+    margin-top: 50px;
     max-width: 100%;
     overflow-x: hidden;
 
 }
 
-.container{
+.container {
     border-radius: 15px;
     box-shadow: 1px 1px 10px;
     padding-top: 20px;
     padding-bottom: 30px;
+    min-height: 600px;
+    max-height: 700px;
     min-width: 380px;
-    max-width: 80%;
+    max-width: 100%;
     margin: 0 auto;
     text-align: center;
-    
+
 }
 
 
-#titles{
+#titles {
     display: flex;
-    justify-content:space-evenly}
+    justify-content: space-evenly
+}
 
-#side-1{
+#side-1 {
     width: 15%;
 }
 
-#titleImg{
+#titleImg {
     width: 50%;
 }
 
-#side-2{
+#side-2 {
     width: 15%;
 }
 
 
-h2{
+h2 {
     font-size: 30px;
-    color:white;
+    color: white;
 }
 
-.rules{
+#rules {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-image: url(images/table.png);
     background-repeat: no-repeat;
     background-size: cover;
-    margin:8%;
+    margin: 8%;
     border-radius: 10px;
 
 }
 
-h3{
-    font-family: Inter,Verdana,sans-serif;
+h3 {
+    font-family: Inter, Verdana, sans-serif;
     font-size: 20px;
 }
 
-ul{
+ul {
     margin-top: -5px;
     text-align: center;
     width: 70%;
     text-align: left;
-    font-family: Inter,Verdana,sans-serif;
+    font-family: Inter, Verdana, sans-serif;
     font-weight: 500;
     color: #D5D4D8;
 }
 
-li{
+li {
     margin-bottom: 10px;
 }
 
-#start-btn{
+#start-btn {
     width: 100px;
     height: 40px;
     border-radius: 10px;
     border: none;
+    color: black;
 }
 
-.buttons{
+#dealer-sum {
+    font-family: Inter, Verdana, sans-serif;
+    font-weight: 500;
+    color: #D5D4D8;
+    background-color: black;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+}
+
+
+#result-menu {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(32, 91, 32);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-family: Inter, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: goldenrod;
+    box-shadow: 1px 1px 10px white;
+    border-radius: 10px;
+}
+
+
+
+#player-sum {
+    font-family: Inter, Verdana, sans-serif;
+    font-weight: 500;
+    color: #D5D4D8;
+    background-color: black;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+}
+
+.buttons {
     display: flex;
     justify-content: center;
 }
 
-#hit-btn{
+#hit-btn {
     width: 75px;
     height: 45px;
     padding: 7px;
     color: black;
     background-color: white;
     border-radius: 8px;
+    border: none;
     margin-right: 20px;
+
 }
 
-#stay-btn{
+#stay-btn {
     width: 75px;
     height: 45px;
     padding: 7px;
     color: black;
     background-color: white;
     border-radius: 8px;
+    border: none;
+
 }
 
-#menu {
-    display: flex;
-    justify-content: flex-start;
+.buttons {
+    gap: 10%;
+    margin-top: 20px;
+}
+
+#card-back {
+    width: 80px;
+    height: 122px;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 10px;
 }
 
 .game-image {
-    width: 90px; 
-    height: auto; 
+    width: 80px;
+    height: auto;
     display: inline-block;
     margin-right: 10px;
+}
+
+
+@media (min-width: 600px) {
+
+    .container {
+        max-width: 900px;
+        max-height: 700px;
+        min-height: 700px;
+    }
+
+    #result-menu{
+        width: 220px;
+    }
+
+    .game-image {
+        width: 110px;
+    }
+
+    #card-back {
+        width: 110px;
+        height: 165px;
+    }
 }

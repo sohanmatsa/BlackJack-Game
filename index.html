@@ -15,32 +15,48 @@
 
 <body>
     <div class="container">
-        <div id="titles">
-            <img id="side-1" src="images/side-titles.png" alt="side-titles">
-            <img id="titleImg" src="images/title2.png" alt="title">
-            <img id="side-2" src="images/side-titles.png" alt="side-titles">
+        <div id="main-page">
+            <div id="titles">
+                <img id="side-1" src="images/side-titles.png" alt="side-titles">
+                <img id="titleImg" src="images/title2.png" alt="title">
+                <img id="side-2" src="images/side-titles.png" alt="side-titles">
+            </div>
+            <h2 id="end-msg" hidden> Thanks for playing , See you next time ! 😀 </h2>
+            <div id="rules">
+                <h3> How to play </h3>
+                <ul>
+                    <li> Player will have to HIT or STAY depending on the sum of cards.</li>
+                    <li> By clicking HIT you can add more cards one by one . You should not exceed the sum 21.</li>
+                    <li> By clicking STAY you will stop adding cards and the Dealer will start their game .If the sum of
+                        cards of Player or Dealer is greater than 21, they lose automatically. </li>
+                    <li> To win, you need to ensure the combined value of your cards is greater than that of the dealer.
+                    </li>
+                </ul>
+            </div>
+            <button id="start-btn"> Let's Play! </button>
         </div>
-        <h2 id="end-msg" hidden> Thanks for playing , See you next time ! 😀 </h2>
-        <div class="rules">
-            <h3> How to play </h3>
-            <ul>
-                <li> Player will have to Hit or Stay depending on the sum of cards.</li>
-                <li> By clicking Hit you can add more cards one by one . You should not exceed the sum 21.</li>
-                <li> By clicking Stay you will stop adding cards and the Dealer will start their game .If the sum of cards of Player or Dealer is greater than 21, they lose automatically. </li>
-                <li> To win, you need to ensure the combined value of your cards is greater than that of the dealer. </li>
-            </ul>
+        <div id="play-again" hidden>
+            <button id="play-againBtn"> Play Again </button>
         </div>
-        <button id="start-btn"> Let's Play! </button>
-        <div id="menu">
-
+        <div id="game-page" hidden>
+            <div id="dealersum-info">
+                <p id="dealer-sum"> Dealer Sum : </p>
+            </div>
+            <div id="dealer-menu">
+                <img id="card-back" src="images/card back red.png" alt="card-back" style="display:none">
+            </div>
+            <div id="result-menu"> 🃁 ...... 🃁 </div>
+            <div id="player-menu"></div>
+            <div id="playersum-info">
+                <p id="player-sum"> Player Sum : </p>
+            </div>
             <div class="buttons">
                 <button id="hit-btn" hidden> HIT 🃁 </button>
-                <button id="stay-btn" hidden> STAY✋ </button>
+                <button id="stand-btn" hidden> STAND✋ </button>
             </div>
-            <!-- <p id="points"> Coins : 200 </p> -->
         </div>
     </div>
-    <script src=".js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
