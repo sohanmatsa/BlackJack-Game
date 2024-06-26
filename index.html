@@ -11,6 +11,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
+    <script>
+        // Preload images
+        const imageUrls = imagesData.map(card => card.src);
+        imageUrls.forEach(url => {
+            const img = new Image();
+            img.src = url;
+        });
+    </script>
+
 </head>
 
 <body>
