@@ -1,22 +1,23 @@
 const startGameBtn = document.getElementById("start-btn");
 const gameRules = document.getElementById("rules");
 const mainPage = document.getElementById("main-page");
+const titles = document.getElementById("titles");
 const gamePage = document.getElementById("game-page");
 const dealerMenu = document.getElementById("dealer-menu");
-const cardBack = document.getElementById("card-back")
+const cardBack = document.getElementById("card-back");
 const playAgainMenu = document.getElementById("play-again");
 const playAgainBtn = document.getElementById("play-againBtn");
 const playerMenu = document.getElementById("player-menu");
-const resultMenu = document.getElementById("result-menu")
+const resultMenu = document.getElementById("result-menu");
 const hitButton = document.getElementById("hit-btn");
 const standButton = document.getElementById("stand-btn");
-const playerSumEl = document.getElementById("player-sum")
-const dealerSumEl = document.getElementById("dealer-sum")
+const playerSumEl = document.getElementById("player-sum");
+const dealerSumEl = document.getElementById("dealer-sum");
 
 let playerSum = 0;
 let dealerSum = 0;
-let playerCards = []
-let dealerCards = []
+let playerCards = [];
+let dealerCards = [];
 
 const imagesData = [
     { src: 'images/2.svg', value: 2 },
@@ -31,7 +32,8 @@ const imagesData = [
     { src: 'images/Ace.svg', value: 11 }
 ];
 
-startGameBtn.addEventListener("click", startGame)
+startGameBtn.addEventListener("click", startGame);
+playAgainBtn.addEventListener("click", resetGame);
 
 function startGame() {
 
@@ -40,49 +42,52 @@ function startGame() {
     mainPage.hidden = true;
     gamePage.hidden = false;
 
-    beginPlayer();
-    beginDealer();
-    initialCheck();
+    setTimeout(beginPlayer, 1000);
+    setTimeout(beginDealer, 3000);
+    setTimeout(initialCheck, 5500);
 }
+
 
 function beginPlayer() {
 
     for (let i = 0; i < 2; i++) {
-        let randomIndex = Math.floor(Math.random() * imagesData.length);
-        let randomCard = imagesData[randomIndex];
-        playerCards.push({
-            src: randomCard.src,
-            value: randomCard.value
-        });
+        setTimeout(function () {
+            let randomIndex = Math.floor(Math.random() * imagesData.length);
+            let randomCard = imagesData[randomIndex];
+            playerCards.push({
+                src: randomCard.src,
+                value: randomCard.value
+            });
 
-        playerSum += randomCard.value;
-        playerSumEl.textContent = "Player Sum : " + playerSum
+            playerSum += randomCard.value;
+            playerSumEl.textContent = "Player Sum : " + playerSum;
 
-        let imgElement = document.createElement("img");
-        imgElement.src = randomCard.src;
-        imgElement.classList.add("game-image");
-        playerMenu.appendChild(imgElement);
+            let imgElement = document.createElement("img");
+            imgElement.src = randomCard.src;
+            imgElement.classList.add("game-image");
+            playerMenu.appendChild(imgElement);
 
+        }, i * 1000);
     }
 }
 
 function beginDealer() {
+    cardBack.style.display = "inline-block";
+    setTimeout(function () {
+        let randomIndex = Math.floor(Math.random() * imagesData.length);
+        let randomCard = imagesData[randomIndex];
+        dealerCards.push({
+            src: randomCard.src,
+            value: randomCard.value
+        });
 
-    cardBack.style.display = "inline-block"
-    let randomIndex = Math.floor(Math.random() * imagesData.length);
-    let randomCard = imagesData[randomIndex];
-    dealerCards.push({
-        src: randomCard.src,
-        value: randomCard.value
-    });
-
-    dealerSum += randomCard.value;
-    dealerSumEl.textContent = "Dealer Sum : " + dealerSum
-    let imgElement = document.createElement("img");
-    imgElement.src = randomCard.src;
-    imgElement.classList.add("game-image");
-    dealerMenu.appendChild(imgElement);
-
+        dealerSum += randomCard.value;
+        dealerSumEl.textContent = "Dealer Sum : " + dealerSum;
+        let imgElement = document.createElement("img");
+        imgElement.src = randomCard.src;
+        imgElement.classList.add("game-image");
+        dealerMenu.appendChild(imgElement);
+    }, 1000);
 }
 
 
@@ -96,7 +101,7 @@ function initialCheck() {
     } else {
         hitButton.hidden = false;
         standButton.hidden = false;
-        hitButton.addEventListener("click", hitCards)
+        hitButton.addEventListener("click", hitCards);
     }
 }
 
@@ -121,7 +126,7 @@ function hitCards() {
     if (playerSum >= 21) {
         hitButton.hidden = true;
         standButton.hidden = true;
-        endPlayer()
+        setTimeout(endPlayer, 1000);
     }
 }
 
@@ -154,7 +159,7 @@ function endPlayer() {
 
 function dealerGame() {
     setTimeout(function () {
-        cardBack.style.display = "none"
+        cardBack.style.display = "none";
         let randomIndex = Math.floor(Math.random() * imagesData.length);
         let randomCard = imagesData[randomIndex];
         dealerCards.push({
@@ -193,11 +198,30 @@ function resultDeclare() {
     } else if (dealerSum > 21) {
         resultMenu.textContent = " Player wins! Dealer busts. ";
     } else {
-        resultMenu.textContent = " DRAW ";
+        resultMenu.textContent = " PUSH ";
     }
-
+    setTimeout(playAgain, 3000);
 }
 
 
+function playAgain() {
+    gamePage.hidden = true;
+    mainPage.hidden = false;
+    gameRules.hidden = true;
+    startGameBtn.hidden = true;
+    playAgainBtn.hidden = false;
+}
 
+function resetGame() {
+    playAgainBtn.hidden = true;
+    playerSum = 0;
+    dealerSum = 0;
+    playerCards = [];
+    dealerCards = [];
+    playerMenu.innerHTML = '';
+    dealerMenu.innerHTML = '';
+    resultMenu.textContent = "🃁 ...... 🃁";
+    startGame();
+
+}
 

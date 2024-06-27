@@ -54,7 +54,8 @@ h2 {
     background-repeat: no-repeat;
     background-size: cover;
     margin: 8%;
-    border-radius: 10px;
+    height: 403px;
+    overflow-y: auto;
 
 }
 
@@ -83,6 +84,14 @@ li {
     border-radius: 10px;
     border: none;
     color: black;
+    font-family: Inter, Verdana, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#start-btn:hover {
+    box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
 }
 
 #dealer-sum {
@@ -98,6 +107,9 @@ li {
     border-radius: 10px;
 }
 
+#dealer-menu{
+    min-height: 130px;
+}
 
 #result-menu {
     margin-top: 20px;
@@ -117,7 +129,9 @@ li {
     border-radius: 10px;
 }
 
-
+#player-menu{
+    min-height: 130px;
+}
 
 #player-sum {
     font-family: Inter, Verdana, sans-serif;
@@ -139,25 +153,35 @@ li {
 
 #hit-btn {
     width: 75px;
-    height: 45px;
-    padding: 7px;
+    height: 40px;
     color: black;
     background-color: white;
     border-radius: 8px;
     border: none;
     margin-right: 20px;
+    font-family: Inter, Verdana, sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+}
 
+#hit-btn:hover {
+    box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
 }
 
 #stand-btn {
     width: 75px;
-    height: 45px;
-    padding: 7px;
+    height: 40px;
     color: black;
     background-color: white;
     border-radius: 8px;
     border: none;
+    font-family: Inter, Verdana, sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+}
 
+#stand-btn:hover {
+    box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
 }
 
 .buttons {
@@ -171,6 +195,8 @@ li {
     display: inline-block;
     margin-right: 10px;
     border-radius: 10px;
+    animation: cardLanding 0.5s ease forwards;
+    
 }
 
 .game-image {
@@ -178,8 +204,41 @@ li {
     height: auto;
     display: inline-block;
     margin-right: 10px;
+    animation: cardLanding 0.5s ease forwards;
+
 }
 
+@keyframes cardLanding {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+#play-again{
+    display: flex;
+    justify-content: center;
+}
+
+#play-againBtn{
+    margin-top: 160px;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    color: black;
+    font-family: Inter, Verdana, sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+#play-againBtn:hover {
+    box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+}
 
 @media (min-width: 600px) {
 
@@ -189,8 +248,21 @@ li {
         min-height: 700px;
     }
 
+    #rules{
+        height: 350px;
+        overflow-y: auto;
+    }
+
+    #dealer-menu{
+        min-height: 160px;
+    }
+
     #result-menu{
         width: 220px;
+    }
+
+    #player-menu{
+        min-height: 160px;
     }
 
     .game-image {
@@ -202,3 +274,4 @@ li {
         height: 165px;
     }
 }
+
