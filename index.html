@@ -11,15 +11,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
         rel="stylesheet">
-    <script>
-        // Preload images
-        const imageUrls = imagesData.map(card => card.src);
-        imageUrls.forEach(url => {
-            const img = new Image();
-            img.src = url;
-        });
-    </script>
-
 </head>
 
 <body>
@@ -32,20 +23,28 @@
             </div>
             <h2 id="end-msg" hidden> Thanks for playing , See you next time ! 😀 </h2>
             <div id="rules">
-                <h3> How to play </h3>
+                <h3> How to Play </h3>
                 <ul>
-                    <li> Player will have to HIT or STAY depending on the sum of cards.</li>
-                    <li> By clicking HIT you can add more cards one by one . You should not exceed the sum 21.</li>
-                    <li> By clicking STAY you will stop adding cards and the Dealer will start their game .If the sum of
-                        cards of Player or Dealer is greater than 21, they lose automatically. </li>
-                    <li> To win, you need to ensure the combined value of your cards is greater than that of the dealer.
-                    </li>
+                    <li> The dealer will give you two blackjack cards and show one of his cards.</li>
+                    <li> You have an option to add more blackjack cards by choosing 'HIT', but you lose automatically if your value of cards exceeds 21.</li>
+                    <li> Click 'STAND' when you are ready to play your hand.</li>
+                    <li> The dealer will reveal his hidden blackjack card and must always hit if they have 16 or lower. They will stop hitting if they have 17 or more.</li>
+                    <li> You win when the combined value of your cards is greater than that of the dealer. You lose if you have a lower score than the dealer, or if the total of your cards exceeds 21.</li>
+                </ul>
+                <h3> Key Rules </h3>
+                <ul>
+                    <li> Your aim is to get a score of 21 or a higher value than the dealer.</li>
+                    <li> If your score exceeds 21 then you lose. This is called 'bust.'</li>
+                    <li> If your score ties with the dealer then your bet is refunded. This is called a 'push.'</li>
+                    <li> Ace is worth 11 only. </li>
+                    <li> You HIT if you wish to be dealt more cards.</li>
+                    <li> You stand if you are happy with your two cards.</li>
                 </ul>
             </div>
             <button id="start-btn"> Let's Play! </button>
         </div>
-        <div id="play-again" hidden>
-            <button id="play-againBtn"> Play Again </button>
+        <div id="play-again">
+            <button id="play-againBtn" hidden> Play Again! </button>
         </div>
         <div id="game-page" hidden>
             <div id="dealersum-info">
