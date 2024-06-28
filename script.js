@@ -11,6 +11,13 @@ const imagesData = [
     { src: 'images/Ace.svg', value: 11 }
 ];
 
+const backgroundAudio = new Audio ('audio/background2.mp3');
+backgroundAudio.loop = true;
+const buttonAudio = new Audio ('audio/buttons.mp3');
+const cardsAudio = new Audio ('audio/light-card2.mp3');
+const playerWinAudio = new Audio ('audio/player-win2.mp3');
+const dealerWinAudio = new Audio ('audio/dealer-win2.mp3');
+
 
 function preloadImages(sources) {
     sources.forEach(image => {
@@ -52,6 +59,8 @@ playAgainBtn.addEventListener("click", resetGame);
 
 function startGame() {
 
+    backgroundAudio.play();
+    buttonAudio.play();
     startGameBtn.hidden = true;
     gameRules.style.display = "none";
     mainPage.hidden = true;
@@ -67,9 +76,11 @@ function startGame() {
 
 
 function beginPlayer() {
-
     for (let i = 0; i < 2; i++) {
         setTimeout(function () {
+
+            cardsAudio.play();
+
             let randomIndex = Math.floor(Math.random() * imagesData.length);
             let randomCard = imagesData[randomIndex];
             playerCards.push({
@@ -90,8 +101,12 @@ function beginPlayer() {
 }
 
 function beginDealer() {
+    cardsAudio.play()
     cardBack.style.display = "inline-block";
     setTimeout(function () {
+        
+        cardsAudio.play();
+
         let randomIndex = Math.floor(Math.random() * imagesData.length);
         let randomCard = imagesData[randomIndex];
         dealerCards.push({
@@ -126,6 +141,8 @@ function initialCheck() {
 
 function hitCards() {
 
+    buttonAudio.play();
+
     let randomIndex = Math.floor(Math.random() * imagesData.length);
     let randomCard = imagesData[randomIndex];
     playerCards.push({
@@ -140,6 +157,7 @@ function hitCards() {
     imgElement.src = randomCard.src;
     imgElement.classList.add("game-image");
     playerMenu.appendChild(imgElement);
+    cardsAudio.play();
 
     if (playerScore >= 21) {
         hitButton.hidden = true;
@@ -164,6 +182,7 @@ function endPlayer() {
     imgElement.src = randomCard.src;
     imgElement.classList.add("game-image");
     dealerMenu.appendChild(imgElement);
+    cardsAudio.play();
 
     resultDeclare();
 }
@@ -172,6 +191,8 @@ function endPlayer() {
 function dealerGame() {
     setTimeout(function () {
         cardBack.style.display = "none";
+        cardsAudio.play();
+
         let randomIndex = Math.floor(Math.random() * imagesData.length);
         let randomCard = imagesData[randomIndex];
         dealerCards.push({
@@ -196,6 +217,7 @@ function dealerGame() {
 }
 
 standButton.addEventListener("click", function () {
+    buttonAudio.play();
     hitButton.hidden = true;
     standButton.hidden = true;
     dealerGame()
@@ -204,17 +226,22 @@ standButton.addEventListener("click", function () {
 function resultDeclare() {
     if (playerScore === 21) {
         resultMenu.textContent = " Player got Blackjack! ";
+        playerWinAudio.play();
         bankAmount += 250;
     } else if (playerScore > 21) {
         resultMenu.textContent = " Dealer wins. Player busts. ";
+        dealerWinAudio.play();
     } else if (dealerScore > 21) {
         resultMenu.textContent = " Player wins! Dealer busts. ";
+        playerWinAudio.play();
         bankAmount += 200;
     } else if (playerScore > dealerScore) {
         resultMenu.textContent = " Player wins! ";
+        playerWinAudio.play();
         bankAmount += 200;
     } else if (playerScore < dealerScore) {
         resultMenu.textContent = " Dealer wins. ";
+        dealerWinAudio.play();
     } else {
         resultMenu.textContent = " PUSH ";
         bankAmount += 100;
@@ -246,6 +273,7 @@ function playAgain() {
 }
 
 function resetGame() {
+    buttonAudio.play();
     playAgainBtn.hidden = true;
     bank.hidden = true;
     playerScore = 0;
