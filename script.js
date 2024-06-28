@@ -1,24 +1,3 @@
-const startGameBtn = document.getElementById("start-btn");
-const gameRules = document.getElementById("rules");
-const mainPage = document.getElementById("main-page");
-const titles = document.getElementById("titles");
-const gamePage = document.getElementById("game-page");
-const dealerMenu = document.getElementById("dealer-menu");
-const cardBack = document.getElementById("card-back");
-const playAgainMenu = document.getElementById("play-again");
-const playAgainBtn = document.getElementById("play-againBtn");
-const playerMenu = document.getElementById("player-menu");
-const resultMenu = document.getElementById("result-menu");
-const hitButton = document.getElementById("hit-btn");
-const standButton = document.getElementById("stand-btn");
-const playerSumEl = document.getElementById("player-sum");
-const dealerSumEl = document.getElementById("dealer-sum");
-
-let playerSum = 0;
-let dealerSum = 0;
-let playerCards = [];
-let dealerCards = [];
-
 const imagesData = [
     { src: 'images/2.svg', value: 2 },
     { src: 'images/3.svg', value: 3 },
@@ -32,6 +11,42 @@ const imagesData = [
     { src: 'images/Ace.svg', value: 11 }
 ];
 
+
+function preloadImages(sources) {
+    sources.forEach(image => {
+        const img = new Image();
+        img.src = image.src;
+    });
+}
+
+preloadImages(imagesData);
+
+const startGameBtn = document.getElementById("start-btn");
+const gameRules = document.getElementById("rules");
+const mainPage = document.getElementById("main-page");
+const titles = document.getElementById("titles");
+const endMsg = document.getElementById("end-msg");
+const gamePage = document.getElementById("game-page");
+const dealerMenu = document.getElementById("dealer-menu");
+const cardBack = document.getElementById("card-back");
+const playAgainMenu = document.getElementById("play-again");
+const playAgainBtn = document.getElementById("play-againBtn");
+const bankMenu = document.getElementById("bank-menu");
+const bank = document.getElementById("bank")
+const playerMenu = document.getElementById("player-menu");
+const resultMenu = document.getElementById("result-menu");
+const hitButton = document.getElementById("hit-btn");
+const standButton = document.getElementById("stand-btn");
+const playerScoreEl = document.getElementById("player-score");
+const dealerScoreEl = document.getElementById("dealer-score");
+
+let playerScore = 0;
+let dealerScore = 0;
+let playerCards = [];
+let dealerCards = [];
+let bankAmount = 1000;
+
+
 startGameBtn.addEventListener("click", startGame);
 playAgainBtn.addEventListener("click", resetGame);
 
@@ -41,6 +56,9 @@ function startGame() {
     gameRules.style.display = "none";
     mainPage.hidden = true;
     gamePage.hidden = false;
+    bank.hidden = false;
+    bankAmount -= 100;
+    bank.textContent = "Bank : $" + bankAmount;
 
     setTimeout(beginPlayer, 1000);
     setTimeout(beginDealer, 3000);
@@ -59,8 +77,8 @@ function beginPlayer() {
                 value: randomCard.value
             });
 
-            playerSum += randomCard.value;
-            playerSumEl.textContent = "Player Sum : " + playerSum;
+            playerScore += randomCard.value;
+            playerScoreEl.textContent = "Player Score : " + playerScore;
 
             let imgElement = document.createElement("img");
             imgElement.src = randomCard.src;
@@ -81,8 +99,8 @@ function beginDealer() {
             value: randomCard.value
         });
 
-        dealerSum += randomCard.value;
-        dealerSumEl.textContent = "Dealer Sum : " + dealerSum;
+        dealerScore += randomCard.value;
+        dealerScoreEl.textContent = "Dealer Score : " + dealerScore;
         let imgElement = document.createElement("img");
         imgElement.src = randomCard.src;
         imgElement.classList.add("game-image");
@@ -92,11 +110,11 @@ function beginDealer() {
 
 
 function initialCheck() {
-    if (playerSum > 21) {
+    if (playerScore > 21) {
         hitButton.hidden = true;
         standButton.hidden = true;
         endPlayer();
-    } else if (playerSum === 21) {
+    } else if (playerScore === 21) {
         endPlayer();
     } else {
         hitButton.hidden = false;
@@ -115,18 +133,18 @@ function hitCards() {
         value: randomCard.value
     });
 
-    playerSum += randomCard.value;
-    playerSumEl.textContent = "Player Sum : " + playerSum
+    playerScore += randomCard.value;
+    playerScoreEl.textContent = "Player Score : " + playerScore
 
     let imgElement = document.createElement("img");
     imgElement.src = randomCard.src;
     imgElement.classList.add("game-image");
     playerMenu.appendChild(imgElement);
 
-    if (playerSum >= 21) {
+    if (playerScore >= 21) {
         hitButton.hidden = true;
         standButton.hidden = true;
-        setTimeout(endPlayer, 1000);
+        setTimeout(endPlayer, 1500);
     }
 }
 
@@ -139,21 +157,15 @@ function endPlayer() {
         value: randomCard.value
     });
 
-    dealerSum += randomCard.value;
-    dealerSumEl.textContent = "Dealer Sum : " + dealerSum;
+    dealerScore += randomCard.value;
+    dealerScoreEl.textContent = "Dealer Score : " + dealerScore;
 
     let imgElement = document.createElement("img");
     imgElement.src = randomCard.src;
     imgElement.classList.add("game-image");
     dealerMenu.appendChild(imgElement);
 
-    if (playerSum > 21) {
-        resultMenu.textContent = " Dealer wins!. Player busts. ";
-    } else if (playerSum === 21) {
-        resultMenu.textContent = " Player got BlackJack! ";
-    } else if (playerSum == dealerSum) {
-        resultMenu.textContent = " PUSH ";
-    }
+    resultDeclare();
 }
 
 
@@ -167,19 +179,20 @@ function dealerGame() {
             value: randomCard.value
         });
 
-        dealerSum += randomCard.value;
-        dealerSumEl.textContent = "Dealer Sum : " + dealerSum;
+        dealerScore += randomCard.value;
+        dealerScoreEl.textContent = "Dealer Score : " + dealerScore;
 
         let imgElement = document.createElement("img");
         imgElement.src = randomCard.src;
         imgElement.classList.add("game-image");
         dealerMenu.appendChild(imgElement);
 
-        if (dealerSum <= 16) {
+        if (dealerScore < 17) {
             dealerGame();
+        } else {
+            resultDeclare();
         }
     }, 1000);
-    setTimeout(resultDeclare, 3000)
 }
 
 standButton.addEventListener("click", function () {
@@ -189,20 +202,39 @@ standButton.addEventListener("click", function () {
 })
 
 function resultDeclare() {
-    if (playerSum > dealerSum && playerSum < 22) {
-        resultMenu.textContent = " Player wins! ";
-    } else if (dealerSum > playerSum && dealerSum < 22) {
-        resultMenu.textContent = " Dealer wins! ";
-    } else if (playerSum > 21) {
-        resultMenu.textContent = " Dealer wins! Player busts. ";
-    } else if (dealerSum > 21) {
+    if (playerScore === 21) {
+        resultMenu.textContent = " Player got Blackjack! ";
+        bankAmount += 250;
+    } else if (playerScore > 21) {
+        resultMenu.textContent = " Dealer wins. Player busts. ";
+    } else if (dealerScore > 21) {
         resultMenu.textContent = " Player wins! Dealer busts. ";
+        bankAmount += 200;
+    } else if (playerScore > dealerScore) {
+        resultMenu.textContent = " Player wins! ";
+        bankAmount += 200;
+    } else if (playerScore < dealerScore) {
+        resultMenu.textContent = " Dealer wins. ";
     } else {
         resultMenu.textContent = " PUSH ";
+        bankAmount += 100;
     }
-    setTimeout(playAgain, 3000);
+
+    bank.textContent = "Bank : $" + bankAmount;
+    setTimeout(gameEnd, 3000);
 }
 
+function gameEnd() {
+    if (bankAmount < 100) {
+        gamePage.hidden = true;
+        mainPage.hidden = false;
+        gameRules.hidden = true;
+        endMsg.hidden = false;
+        startGameBtn.hidden = true;
+    } else {
+        playAgain();
+    }
+}
 
 function playAgain() {
     gamePage.hidden = true;
@@ -210,16 +242,20 @@ function playAgain() {
     gameRules.hidden = true;
     startGameBtn.hidden = true;
     playAgainBtn.hidden = false;
+    bank.hidden = false;
 }
 
 function resetGame() {
     playAgainBtn.hidden = true;
-    playerSum = 0;
-    dealerSum = 0;
+    bank.hidden = true;
+    playerScore = 0;
+    dealerScore = 0;
     playerCards = [];
     dealerCards = [];
     playerMenu.innerHTML = '';
     dealerMenu.innerHTML = '';
+    playerScoreEl.textContent = "Player Sum : " + playerScore;
+    dealerScoreEl.textContent = "Dealer Sum : " + dealerScore;
     resultMenu.textContent = "🃁 ...... 🃁";
     startGame();
 

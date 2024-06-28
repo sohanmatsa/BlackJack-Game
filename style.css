@@ -94,7 +94,7 @@ li {
     box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
 }
 
-#dealer-sum {
+#dealer-score {
     font-family: Inter, Verdana, sans-serif;
     font-weight: 500;
     color: #D5D4D8;
@@ -133,7 +133,7 @@ li {
     min-height: 130px;
 }
 
-#player-sum {
+#player-score {
     font-family: Inter, Verdana, sans-serif;
     font-weight: 500;
     color: #D5D4D8;
@@ -219,12 +219,23 @@ li {
     }
   }
 
-#play-again{
-    display: flex;
-    justify-content: center;
+#bank-menu{
+    float: left;
+    margin-top: -10px;
+    margin-left: 10px;
+}
+
+#bank{
+    width:80px;
+    padding: 5px;
+    border-radius: 10px;
+    color: black;
+    background-color: goldenrod;
+    
 }
 
 #play-againBtn{
+    margin-left: -100px;
     margin-top: 160px;
     width: 100px;
     height: 40px;
@@ -238,6 +249,10 @@ li {
 
 #play-againBtn:hover {
     box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+}
+
+#end-msg{
+    margin-top: 150px;
 }
 
 @media (min-width: 600px) {
