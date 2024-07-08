@@ -12,4 +12,4 @@ Updated to v2
 __________
 CHANGELOGS - 08.07.2024
 __________
--Added Deal option to the game
+- Added Deal option to the game
