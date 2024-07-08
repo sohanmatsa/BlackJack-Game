@@ -36,8 +36,9 @@ const endMsg = document.getElementById("end-msg");
 const gamePage = document.getElementById("game-page");
 const dealerMenu = document.getElementById("dealer-menu");
 const cardBack = document.getElementById("card-back");
-const playAgainMenu = document.getElementById("play-again");
-const playAgainBtn = document.getElementById("play-againBtn");
+const betMenu = document.getElementById("bet-menu");
+const dealBtn1 = document.getElementById("deal-btn1");
+const dealBtn2 = document.getElementById("deal-btn2");
 const bankMenu = document.getElementById("bank-menu");
 const bank = document.getElementById("bank")
 const playerMenu = document.getElementById("player-menu");
@@ -54,8 +55,21 @@ let dealerCards = [];
 let bankAmount = 1000;
 
 
-startGameBtn.addEventListener("click", startGame);
-playAgainBtn.addEventListener("click", resetGame);
+startGameBtn.addEventListener("click", letsPlay);
+dealBtn1.addEventListener("click",startGame);
+dealBtn2.addEventListener("click", resetGame);
+
+function letsPlay() {
+    backgroundAudio.play();
+    buttonAudio.play();
+    gamePage.hidden = true;
+    mainPage.hidden = false;
+    gameRules.style.display = "none";
+    startGameBtn.hidden = true;
+    betMenu.hidden = false;
+    dealBtn2.hidden = true;
+    bank.hidden = false;
+}
 
 function startGame() {
 
@@ -64,6 +78,7 @@ function startGame() {
     startGameBtn.hidden = true;
     gameRules.style.display = "none";
     mainPage.hidden = true;
+    betMenu.hidden = true;
     gamePage.hidden = false;
     bank.hidden = false;
     bankAmount -= 100;
@@ -268,13 +283,15 @@ function playAgain() {
     mainPage.hidden = false;
     gameRules.hidden = true;
     startGameBtn.hidden = true;
-    playAgainBtn.hidden = false;
+    betMenu.hidden = false;
+    dealBtn1.hidden = true;
+    dealBtn2.hidden = false;
     bank.hidden = false;
 }
 
 function resetGame() {
     buttonAudio.play();
-    playAgainBtn.hidden = true;
+    betMenu.hidden = true;
     bank.hidden = true;
     playerScore = 0;
     dealerScore = 0;
